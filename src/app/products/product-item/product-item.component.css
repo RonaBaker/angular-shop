@@ -1,0 +1,12 @@
+img {
+    width: 200px;
+}
+
+img:hover{
+    cursor: pointer;
+}
+
+div {
+    padding-bottom: 30px;
+    text-align: center;
+}

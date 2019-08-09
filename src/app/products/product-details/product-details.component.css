@@ -1,0 +1,27 @@
+.product-details {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    text-align: center;
+}
+
+img {
+    width: 250px;
+}
+
+.line {
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #f0f0f0;  
+}
+
+button {
+    margin-left: 120px;
+    background-color: rgb(56, 54, 53);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}

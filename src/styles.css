@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+/* @import '~font-awesome/css/font-awesome.css'; */
+* {
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #f0f0f0;  
+    color: #444444;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+

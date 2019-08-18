@@ -1,0 +1,14 @@
+
+<div>
+    <ul>
+        <li class="menu-item" *ngFor="let itemMenu of menu" (click)="changeContent(itemMenu)">
+            {{itemMenu}}
+        </li>
+        <app-social-tab>
+            <a #tab href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a> 
+            <a #tab href="https://www.gmail.com"><i class="fas fa-envelope"></i></a>
+            <a #tab href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+        </app-social-tab>      
+    </ul>
+
+</div>

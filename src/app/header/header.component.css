@@ -1,0 +1,30 @@
+.top-panel {
+    height: 50px;
+    background: rgb(39, 39, 39);
+    display: flex;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.fas {
+    padding: 5px;
+    color: wheat;
+    margin-left: 5px;
+}
+
+.fa-bars {
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+.fas:hover{
+    background-color: rgb(63, 62, 62);
+    cursor: pointer;
+}
+
+#banner {
+    width: 100%;
+    margin-top: 50px;
+}
+

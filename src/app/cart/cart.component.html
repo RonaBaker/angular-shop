@@ -1,0 +1,11 @@
+<div class="cart-container">
+    <h1>Your Cart</h1>
+    <p *ngIf="getNumCartItems() === 0">Your cart is empty</p>
+    <div class="cart-items" *ngIf="getNumCartItems() > 0">
+        <p>You have {{getNumCartItems()}} items in your cart</p>
+        <app-cart-item *ngFor="let item of cart" [cartItem]="item" (Content)="viewProductDetails($event)"></app-cart-item>
+        <p class="total-payment">Total Payment: {{getTotalPayment()}} ILS
+            <button>Checkout</button>
+        </p>
+    </div>
+</div>

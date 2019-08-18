@@ -1,0 +1,11 @@
+<app-sidebar [@sideBarState]="sidebarState" (content)="changeContent($event)"></app-sidebar>
+<app-header (isOpen)="toggleMenu()" (openCart)="currentContent = 'CART'"></app-header>
+<div [ngSwitch]="currentContent">
+    <app-home *ngSwitchCase="'HOME'" [contentState]="currentContent"></app-home>
+    <app-about *ngSwitchCase="'ABOUT'" [contentState]="currentContent"></app-about>
+    <app-products *ngSwitchCase="'PRODUCTS'" (productDetails)="productDetailsContent($event)" [contentState]="currentContent"></app-products>
+    <app-contact *ngSwitchCase="'CONTACT'" [contentState]="currentContent"></app-contact>
+    <app-product-details *ngSwitchCase="'DETAILS'" [fromElement]="fromElement" [productDetails]="getProductDetails()" (productsView)="currentContent = 'PRODUCTS'" [contentState]="currentContent" (cartView)="currentContent = 'CART'"></app-product-details>
+    <app-cart *ngSwitchCase="'CART'" (productDetails)="productDetailsContent($event)"></app-cart>
+    <app-home *ngSwitchCaseDefault></app-home>
+</div>

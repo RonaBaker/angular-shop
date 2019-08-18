@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <img [src]="cartItem.image">
+    <div class="item-details">
+        <p><b>Item: </b> <span (click)="changeContent()">{{ cartItem.title }}</span></p>
+        <p><b>Amount: </b>
+            <i class="fas fa-plus-square" (click)="addQuantity()" title="increase item amount"></i>
+            {{ getQuantity() }}
+            <i class="fas fa-minus-square"  (click)="removeQuantity()" title="decrease item amount"></i>
+        </p>
+        <p>Price: {{ cartItem.price}} ILS</p>
+        <p class="total-details"> Total: {{ getTotalPrice() }} ILS </p>
+    </div>
+    <button title="remove item" (click)="removeCartItem()"><i class="far fa-trash-alt"></i></button>
+</div>

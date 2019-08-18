@@ -1,0 +1,30 @@
+[{
+    "categoryId":"bout",
+    "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_3799-edit.jpg",
+    "title":"Love ale",
+    "price": 14,
+    "description": "330ml, 5.5% alcohol, Made in Israel" 
+},
+{
+    "categoryId":"imp",
+    "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_2366-edit.jpg",
+    "title":"Kasteel Triple",
+    "price": 17.5,
+    "description": "330ml, 11% alcohol, Made in Belgium" 
+},
+{
+    "categoryId":"imp",
+    "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_2977-edit.jpg",
+    "title":"Mc Chouff",
+    "price": 27,
+    "description": "750ml, 8% alcohol, Made in Belgium" 
+
+},
+{
+    "categoryId":"bout",
+    "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_3791-edit.jpg",
+    "title":"Barzel",
+    "price": 14,
+    "description": "330ml, 6% alcohol, Made in Israel" 
+    
+}]

@@ -1,0 +1,20 @@
+button {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: white;
+    background: black;
+    border-radius: 10px; 
+    font-weight: bold;
+    border: 0;
+}
+
+button:focus{
+    outline:0;
+}
+
+button:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+
+}

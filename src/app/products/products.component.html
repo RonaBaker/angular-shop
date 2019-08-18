@@ -1,0 +1,17 @@
+<div class="box" [@productsState]="contentState">
+    <div class="dropdown">
+            <button class="dropbtn">Products</button>
+            <div class="dropdown-content">
+                <div class="category" (click)="filterCategory('All')">All</div>
+                <div class="category" *ngFor="let category of categoryArray" (click)="filterCategory(category.id)">{{category.title}}</div>
+            </div>
+      </div>
+    <div class="product">
+        <ng-container *ngIf="currentCategoryId==='All'">
+            <app-product-item *ngFor="let product of productArray" [product]="product" (productDetails)="viewProductDetails($event)" ></app-product-item>
+        </ng-container>
+        <ng-container *ngIf="currentCategoryId!=='All'">
+            <app-product-item *ngFor="let product of filteredArray" [product]="product" (productDetails)="viewProductDetails($event)"></app-product-item>
+        </ng-container>
+    </div>
+</div>

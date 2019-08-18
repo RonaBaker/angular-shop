@@ -1,0 +1,36 @@
+.product-details {
+    display: flex;
+    margin-bottom: 10px;
+    margin-left: 120px;
+    margin-bottom: 50px;
+}
+
+img {
+    width: 250px;
+}
+
+.line {
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #f0f0f0;  
+}
+
+button {
+    margin-left: 120px;
+    background-color: rgb(56, 54, 53);
+    margin-bottom: 30px;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.details {
+    margin-left: 50px;
+}
+
+.details p {
+    margin-top: 10px;
+}

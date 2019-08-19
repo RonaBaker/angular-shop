@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Product } from 'src/app/model/product';
-import { trigger, state, style, transition, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-product-details',

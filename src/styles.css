@@ -16,3 +16,55 @@ h1 {
     letter-spacing: 2px;
 }
 
+h2 {
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin-bottom: 25px;
+    margin-left: 50px;
+}
+
+.form-button {
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 70px;
+}
+
+.validation-error {
+    color: grey;
+    font-size: small;
+}
+
+.action-button {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: white;
+    background: black;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 0;
+
+}
+
+.action-button:focus{
+    outline:0;
+}
+
+.action-button:hover{
+    cursor: pointer;
+    background: white;
+    color: black;
+
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +11,19 @@ export class SidebarComponent implements OnInit {
   @Output() content = new EventEmitter();
 
   menu: string[];
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    this.menu = ['HOME', 'ABOUT', 'PRODUCTS', 'CONTACT', 'CART'];
   }
 
   changeContent(val: string) {
     this.content.emit(val);
+  }
+
+  isPermitted() {
+    if (this.loginService.isLoggedIn() && this.loginService.hasPermission()) {
+      return true;
+    }
   }
 
 }

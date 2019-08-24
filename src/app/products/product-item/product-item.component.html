@@ -2,6 +2,10 @@
     <div>
         <img src="{{product.image}}" (click)="changeContentProduct()">
         <h3>{{product.title}}</h3>
-        <app-cart-action [product]="product"></app-cart-action>
+        <div class="container-action">
+            <app-cart-action [product]="product"></app-cart-action>
+            <button class="action-button" *ngIf="isPermitted()" (click)="editProduct()">Edit Product</button>
+        </div>
     </div>
 </div>
+

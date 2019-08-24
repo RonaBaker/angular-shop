@@ -5,3 +5,11 @@ p {
     margin-left: 300px;
     margin-right: 300px;
 }
+
+input.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+    border: 2px solid green;
+}

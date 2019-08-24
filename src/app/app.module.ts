@@ -16,6 +16,9 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartActionComponent } from './cart-action/cart-action.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,16 @@ import { CartActionComponent } from './cart-action/cart-action.component';
     SocialTabComponent,
     CartComponent,
     CartItemComponent,
-    CartActionComponent
+    CartActionComponent,
+    LoginComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,27 +1,25 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { trigger, state, style, transition, animate} from '@angular/animations';
-
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'],
-  animations: [
-    trigger('contactState', [
-      state('CONTACT', style({
-        'font-size': '30px'
-      })),
-      transition('* => CONTACT', animate('300ms')),
-    ])
-  ]
+  styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
 
   @Input() contentState: string;
+  email: string;
+  subject: string;
+  message: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    /* sending the request to the server with email, subject and message  */
+    console.log("Your details have been sent");
   }
 
 }

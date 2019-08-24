@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit {
   filteredArray: Product[];
   @Input() contentState: string;
   @Output() productDetails = new EventEmitter();
+  @Output() edit = new EventEmitter();
 
   constructor(private dataService: DataService) { }
 
@@ -48,5 +49,9 @@ export class ProductsComponent implements OnInit {
 
     viewProductDetails(event: {product: Product, from: string}) {
       this.productDetails.emit(event);
+    }
+
+    editProduct(event: Product) {
+      this.edit.emit(event);
     }
 }

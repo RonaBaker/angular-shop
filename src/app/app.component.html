@@ -1,11 +1,19 @@
 <app-sidebar [@sideBarState]="sidebarState" (content)="changeContent($event)"></app-sidebar>
-<app-header (isOpen)="toggleMenu()" (openCart)="currentContent = 'CART'"></app-header>
+<app-header (isOpen)="toggleMenu()" (openCart)="currentContent = 'CART'" (openLogin)="currentContent = 'LOGIN'"></app-header>
 <div [ngSwitch]="currentContent">
     <app-home *ngSwitchCase="'HOME'" [contentState]="currentContent"></app-home>
     <app-about *ngSwitchCase="'ABOUT'" [contentState]="currentContent"></app-about>
-    <app-products *ngSwitchCase="'PRODUCTS'" (productDetails)="productDetailsContent($event)" [contentState]="currentContent"></app-products>
+    <app-products 
+        *ngSwitchCase="'PRODUCTS'" (productDetails)="productDetailsContent($event)" 
+        [contentState]="currentContent" (edit)="editProduct($event)"></app-products>
     <app-contact *ngSwitchCase="'CONTACT'" [contentState]="currentContent"></app-contact>
-    <app-product-details *ngSwitchCase="'DETAILS'" [fromElement]="fromElement" [productDetails]="getProductDetails()" (productsView)="currentContent = 'PRODUCTS'" [contentState]="currentContent" (cartView)="currentContent = 'CART'"></app-product-details>
+    <app-product-details 
+        *ngSwitchCase="'DETAILS'" [fromElement]="fromElement" [productDetails]="getProductDetails()" 
+        (productsView)="currentContent = 'PRODUCTS'" [contentState]="currentContent" 
+        (cartView)="currentContent = 'CART'" (edit)="editProduct($event)"></app-product-details>
     <app-cart *ngSwitchCase="'CART'" (productDetails)="productDetailsContent($event)"></app-cart>
+    <app-login *ngSwitchCase="'LOGIN'" (openHome)="currentContent = 'HOME'" ></app-login>
+    <app-add-product *ngSwitchCase="'ADD-PRODUCT'"></app-add-product>
+    <app-add-product *ngSwitchCase="'EDIT-PRODUCT'" [patchProduct]="productEdit"></app-add-product>
     <app-home *ngSwitchCaseDefault></app-home>
 </div>

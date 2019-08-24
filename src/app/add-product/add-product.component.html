@@ -1,0 +1,58 @@
+<div *ngIf="isLoggedIn()">
+    <h2>{{ title }}</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-input">
+            <label>Category</label>
+            <select formControlName="category">
+                <option *ngFor="let category of categoryArray" [ngValue]="category">{{ category.title }}</option>
+            </select> 
+            <div *ngIf="categoryForm.invalid && (categoryForm.dirty || categoryForm.touched)">
+                    <div class="validation-error" *ngIf="categoryForm.errors.required">Category is required</div>
+            </div>         
+        </div>
+        <div class="form-input">
+            <label for="image">Image</label>
+            <input 
+                id="image" 
+                type="text" 
+                name="image"                     
+                formControlName="image">
+            <div *ngIf="imageForm.invalid && (imageForm.dirty || imageForm.touched)">
+                <div class="validation-error" *ngIf="imageForm.errors.required">Image is required</div>
+            </div>
+        </div>
+        <div class="form-input">
+            <label for="title">Title</label>
+            <input 
+                id="title" 
+                type="text" 
+                name="title"
+                formControlName="title">           
+            <div *ngIf="titleForm.invalid && (titleForm.dirty || titleForm.touched)">
+                    <div class="validation-error" *ngIf="titleForm.errors.required">Title is required</div>
+            </div>  
+
+        </div>
+        <div class="form-input">
+            <label for="price">Price</label>            
+            <input 
+                id="price" 
+                type="number" 
+                name="price"
+                formControlName="price">           
+            <div *ngIf="priceForm.invalid && (priceForm.dirty || priceForm.touched)">
+                    <div class="validation-error" *ngIf="priceForm.errors.required">Price is required</div>
+                    <div class="validation-error" *ngIf="priceForm.errors.min">Price must be larger than 0</div>
+            </div>  
+        </div>
+        <div class="form-input">
+            <label for="description">Description</label>            
+            <input 
+                id="description" 
+                type="text" 
+                name="description"
+                formControlName="description">
+        </div>
+        <button class="form-button" type="submit" [disabled]="!productForm.valid">Save</button>
+    </form>
+</div>

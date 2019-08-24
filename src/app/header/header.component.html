@@ -3,6 +3,9 @@
         <i class="fas fa-bars" (click)="onClickMenu()"></i>
     </div>
     <div>
+        <button (click)="loginView()">{{ isLogin() }}</button>
+    </div>
+    <div *ngIf="isLoggedIn()">
         <i class="fas fa-shopping-cart"  (click)="onClickCart()"><p>
             ({{ getNumCartItems() }})</p></i>
     </div>

@@ -1,0 +1,23 @@
+<div>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-input">
+            <label for="username" >Username </label>
+            <input 
+                id="username"
+                name="username" 
+                type="text"
+                formControlName="username">  
+        </div>
+        <div class="form-input">
+            <label for="password">Password </label>
+            <input 
+                id="password" 
+                name="password"
+                type="password"
+                formControlName="password">
+        </div>
+        <div class="validation-error" *ngIf="isValid">Username/password is incorrect</div>
+        <button class="form-button" type="submit">Login</button>
+    </form>
+</div>

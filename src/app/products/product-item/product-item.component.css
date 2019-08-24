@@ -19,3 +19,9 @@ img:hover{
 h3 {
     padding-top: 10px;
 }
+
+.container-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -12,9 +12,14 @@ button:focus{
     outline:0;
 }
 
-button:hover {
+button:hover:not([disabled]){
     cursor: pointer;
     background: white;
     color: black;
 
+}
+
+button[disabled] {
+    background: #cccaca;
+    color: #8c8b8b;
 }

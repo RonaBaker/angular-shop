@@ -1,4 +1,40 @@
 <div>
-    <h1 [@contactState]="contentState">Contact Us</h1>
-    <p>We would be happy to answer your questions. Please contact us via Email, Facebook or Twitter</p>
+    <h1
+    >Contact Us</h1>
+    <p>We would love to hear from you. Send us a message and we will respond as soon as possible</p>
+    <form (ngSubmit)="onSubmit(); contactForm.reset(); " #contactForm="ngForm">
+        <div class="form-input">
+            <label for="email">Email*</label>
+            <input 
+                id="email"
+                name="email" 
+                type="email" 
+                [(ngModel)]="email" 
+                #emailInput="ngModel" 
+                required 
+                email>
+            <div class="validation-error" *ngIf="emailInput.touched && emailInput.invalid">Invalid email</div>
+        </div>
+        <div class="form-input">
+            <label for="subject">Subject*</label>
+            <input 
+                id="subject" 
+                name="subject" 
+                type="text" 
+                [(ngModel)]="subject" 
+                #subjectInput="ngModel" 
+                required>
+            <div class="validation-error" *ngIf="subjectInput.touched && subjectInput.invalid">Invalid email</div>
+        </div>
+        <div class="form-input">
+            <label for="message">Message</label>
+            <textarea 
+                id="message" 
+                name="message" 
+                [(ngModel)]="message"></textarea>
+        </div>
+        <div>
+            <button class="form-button" type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+        </div>
+    </form>
 </div>

@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   currentContent: string;
   product: Product;
   fromElement: string;
+  productEdit: Product;
 
   ngOnInit() {
     this.title = 'angular-shop';
@@ -49,6 +50,11 @@ export class AppComponent implements OnInit {
 
   getProductDetails(): Product {
       return this.product;
+  }
+
+  editProduct(event: Product) {
+    this.productEdit = event;
+    this.currentContent = 'EDIT-PRODUCT';
   }
 
 }

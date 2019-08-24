@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { CartService} from '../services/cart.service';
 import { PaymentService} from '../services/payment.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,17 @@ export class HeaderComponent implements OnInit {
 
   @Output() isOpen = new EventEmitter();
   @Output() openCart = new EventEmitter();
-  constructor(private cartService: CartService, private paymentService: PaymentService) { }
+  @Output() openLogin = new EventEmitter();
+  constructor(private cartService: CartService, private paymentService: PaymentService, private loginService: LoginService) { }
 
   ngOnInit() {
+  }
+
+  isLogin() {
+     if (this.loginService.isLoggedIn()) {
+       return 'logout';
+     }
+     return 'login';
   }
 
   onClickMenu() {
@@ -25,7 +34,20 @@ export class HeaderComponent implements OnInit {
   }
 
   getNumCartItems() {
-    return this.paymentService.CountItems;
+    return this.paymentService.getNumberItems();
+  }
+
+  loginView() {
+    if (this.loginService.isLoggedIn()) {
+      this.loginService.logout();
+    }
+    else {
+      this.openLogin.emit();
+    }
+  }
+
+  isLoggedIn() {
+    return this.loginService.isLoggedIn();
   }
 
 }

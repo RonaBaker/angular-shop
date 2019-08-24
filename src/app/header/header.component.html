@@ -2,7 +2,10 @@
     <div class="bars">
         <i class="fas fa-bars" (click)="onClickMenu()"></i>
     </div>
-    <div>
+    <div class="languagebar">
+        <div class="lang" *ngFor="let lang of languages" (click)="changeLang(lang)">{{ lang }}</div>
+    </div>
+     <div>
         <button (click)="loginView()">{{ isLogin() }}</button>
     </div>
     <div *ngIf="isLoggedIn()">

@@ -1,12 +1,12 @@
 
 <div>
     <ul>
-        <li class="menu-item" (click)="changeContent('HOME')">HOME</li>
-        <li class="menu-item" (click)="changeContent('ABOUT')">ABOUT</li>
-        <li class="menu-item" (click)="changeContent('PRODUCTS')">PRODUCTS</li>
-        <li class="menu-item" (click)="changeContent('CONTACT')">CONTACT</li>
-        <li class="menu-item" (click)="changeContent('CART')">CART</li>        
-        <li class="menu-item" (click)="changeContent('ADD-PRODUCT')" *ngIf="isPermitted()" >ADD PRODUCT</li>
+        <li class="menu-item" (click)="changeContent('HOME')">{{ 'HOME' | language : defaultLang : 'home' }}</li>
+        <li class="menu-item" (click)="changeContent('ABOUT')">{{'ABOUT' | language : defaultLang : 'about'}}</li>
+        <li class="menu-item" (click)="changeContent('PRODUCTS')">{{'PRODUCTS' | language :defaultLang : 'products'}}</li>
+        <li class="menu-item" (click)="changeContent('CONTACT')">{{'CONTACT' | language: defaultLang : 'contact'}}</li>
+        <li class="menu-item" (click)="changeContent('CART')">{{'CART' | language: defaultLang : 'cart'}}</li>        
+        <li class="menu-item" (click)="changeContent('ADD-PRODUCT')" *ngIf="isPermitted()" >{{'ADD PRODUCT' | language: defaultLang : 'addProduct'}}</li>
         <app-social-tab>
             <a #tab href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a> 
             <a #tab href="https://www.gmail.com"><i class="fas fa-envelope"></i></a>

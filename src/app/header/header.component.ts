@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { CartService} from '../services/cart.service';
 import { PaymentService} from '../services/payment.service';
 import { LoginService } from '../services/login.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +14,19 @@ export class HeaderComponent implements OnInit {
   @Output() isOpen = new EventEmitter();
   @Output() openCart = new EventEmitter();
   @Output() openLogin = new EventEmitter();
-  constructor(private cartService: CartService, private paymentService: PaymentService, private loginService: LoginService) { }
+  languages: string[];
+
+  constructor(private cartService: CartService, 
+              private paymentService: PaymentService, 
+              private loginService: LoginService,
+              private languageService: LanguageService) { }
 
   ngOnInit() {
+    this.languages = this.languageService.providedLanguages;
+  }
+
+  changeLang(lang: string) {
+    this.languageService.changeLanguage(lang);
   }
 
   isLogin() {

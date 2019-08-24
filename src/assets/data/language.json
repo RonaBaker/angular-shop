@@ -1,0 +1,19 @@
+[{
+    "language": "ENG",
+    "home":"HOME",
+    "about":"ABOUT",
+    "products":"PRODUCTS",
+    "contact": "CONTACT",
+    "cart": "CART",
+    "addProduct": "ADD PRODUCT"
+},
+{
+    "language": "HEB",
+    "home":"ראשי",
+    "about":"עלינו",
+    "products":"מוצרים",
+    "contact": "צור קשר",
+    "cart": "עגלה",
+    "addProduct": "הוסף מוצר"
+}
+]

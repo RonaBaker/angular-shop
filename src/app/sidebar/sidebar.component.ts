@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,7 @@ export class SidebarComponent implements OnInit {
   @Output() content = new EventEmitter();
 
   menu: string[];
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private languageService: LanguageService) { }
 
   ngOnInit() {
   }
@@ -24,6 +25,10 @@ export class SidebarComponent implements OnInit {
     if (this.loginService.isLoggedIn() && this.loginService.hasPermission()) {
       return true;
     }
+  }
+
+  get defaultLang() {
+    return this.languageService.defaultLanguage.language;
   }
 
 }

@@ -8,7 +8,7 @@
         <div class="details">
                 <h3>{{productDetails.title}}</h3>
                 <p class="description">{{productDetails.description}}</p>
-                <p class="price"><b>price:</b> {{productDetails.price}} ILS</p>
+                <p class="price"><b>price:</b> {{productDetails.price | currency:'ILS'}} </p>
                 <div class="container-action">
                         <app-cart-action [product]="productDetails"></app-cart-action>
                         <button class="action-button" *ngIf="isPermitted()" (click)="editProduct()">Edit Product</button>

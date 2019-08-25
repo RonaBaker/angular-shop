@@ -4,7 +4,7 @@
     <div class="cart-items" *ngIf="getNumCartItems() > 0">
         <p>You have {{getNumCartItems()}} items in your cart</p>
         <app-cart-item *ngFor="let item of cart" [cartItem]="item" (Content)="viewProductDetails($event)"></app-cart-item>
-        <p class="total-payment">Total Payment: {{getTotalPayment()}} ILS
+        <p class="total-payment">Total Payment: {{getTotalPayment() | currency:'ILS'}}
             <button>Checkout</button>
         </p>
     </div>

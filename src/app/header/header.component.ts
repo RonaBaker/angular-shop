@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   @Output() openCart = new EventEmitter();
   @Output() openLogin = new EventEmitter();
   languages: string[];
+  activeLang: string;
 
   constructor(private cartService: CartService, 
               private paymentService: PaymentService, 
@@ -23,10 +24,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.languages = this.languageService.providedLanguages;
+    this.activeLang = this.languageService.defaultLanguage.language;
   }
 
   changeLang(lang: string) {
     this.languageService.changeLanguage(lang);
+    this.activeLang = lang;
   }
 
   isLogin() {

@@ -3,7 +3,8 @@
         <i class="fas fa-bars" (click)="onClickMenu()"></i>
     </div>
     <div class="languagebar">
-        <div class="lang" *ngFor="let lang of languages" (click)="changeLang(lang)">{{ lang }}</div>
+        <div class="lang" *ngFor="let lang of languages" (click)="changeLang(lang)" 
+        [ngStyle]="lang === activeLang && {'color':'rgb(39, 39, 39)', 'background': 'wheat'}">{{ lang }}</div>
     </div>
      <div>
         <button (click)="loginView()">{{ isLogin() }}</button>

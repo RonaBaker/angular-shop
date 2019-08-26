@@ -2,7 +2,7 @@
     <h1
     >Contact Us</h1>
     <p>We would love to hear from you. Send us a message and we will respond as soon as possible</p>
-    <form (ngSubmit)="onSubmit(); contactForm.reset(); " #contactForm="ngForm">
+    <form #contactForm="ngForm">
         <div class="form-input">
             <label for="email">Email*</label>
             <input 
@@ -34,7 +34,12 @@
                 [(ngModel)]="message"></textarea>
         </div>
         <div>
-            <button class="form-button" type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+            <button 
+            [appConfirmation]="confirmationMsg" 
+            (appConfirmation)="onConfirmation($event); contactForm.reset()" 
+            class="form-button" 
+            type="button" 
+            [disabled]="!contactForm.form.valid">Submit</button>
         </div>
     </form>
 </div>

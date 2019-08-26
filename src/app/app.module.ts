@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { LanguagePipe } from './pipes/language.pipe';
+import { ConfirmationDirective } from './confirmation/confirmation.directive';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LanguagePipe } from './pipes/language.pipe';
     LoginComponent,
     AddProductComponent,
     LanguagePipe,
+    ConfirmationDirective
   ],
   imports: [
     BrowserModule,

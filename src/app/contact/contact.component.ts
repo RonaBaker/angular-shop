@@ -22,17 +22,9 @@ export class ContactComponent implements OnInit {
     this.confirmationMsg = 'Are you sure?';
   }
 
-  onSubmit(form: NgForm) {
-    /* sending the request to the server with email, subject and message  */
-    //console.log("Your details have been sent");
-    if (this.userResponse !== null) {
-      form.reset();
-    }
-  }
-
-  onConfirmation(res: string) {
-    this.userResponse = res;
-    console.log(`user response: ${res}`);
+  onConfirmation(form: NgForm) {
+    console.log('User sent contact details');
+    form.reset();
   }
 
 }

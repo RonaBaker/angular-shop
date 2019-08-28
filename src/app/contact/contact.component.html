@@ -36,7 +36,7 @@
         <div>
             <button 
             [appConfirmation]="confirmationMsg" 
-            (appConfirmation)="onConfirmation($event); contactForm.reset()" 
+            (appConfirmation)="onConfirmation(contactForm)"
             class="form-button" 
             type="button" 
             [disabled]="!contactForm.form.valid">Submit</button>

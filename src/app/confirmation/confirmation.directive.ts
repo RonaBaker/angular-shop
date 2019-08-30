@@ -10,7 +10,6 @@ export class ConfirmationDirective {
   constructor() { }
 
   @HostListener('click') showMessage() {
-    //const res = window.prompt(this.message);
     const res = window.confirm(this.message);
     if (res) {
       this.response.emit(res);

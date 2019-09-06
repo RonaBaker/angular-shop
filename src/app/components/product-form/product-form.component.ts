@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, Input} from '@angular/core';
-import { DataService } from '../services/data.service';
-import { LoginService } from '../services/login.service';
-import { Category } from '../model/category';
-import { Product } from '../model/product';
+import { DataService } from '../../services/data.service';
+import { LoginService } from '../../services/login.service';
+import { Category } from '../../model/category';
+import { Product } from '../../model/product';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router, RouterState, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';

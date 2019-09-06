@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { Product } from '../model/product';
-import { Category } from '../model/category';
+import { Product } from '../../model/product';
+import { Category } from '../../model/category';
 import { trigger, state, style, transition, animate} from '@angular/animations';
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 
 
 @Component({

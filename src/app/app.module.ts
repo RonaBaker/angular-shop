@@ -1,54 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ProductsComponent } from './products/products.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProductItemComponent } from './products/product-item/product-item.component';
-import { ProductDetailsComponent } from './products/product-details/product-details.component';
-import { SocialTabComponent } from './social-tab/social-tab.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ProductItemComponent } from './components/products/product-item/product-item.component';
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { SocialTabComponent } from './components/social-tab/social-tab.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { CartComponent } from './cart/cart.component';
-import { CartItemComponent } from './cart/cart-item/cart-item.component';
-import { CartActionComponent } from './cart-action/cart-action.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartItemComponent } from './components/cart/cart-item/cart-item.component';
+import { CartActionComponent } from './components/cart-action/cart-action.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { ProductFormComponent } from './product-form/product-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 import { LanguagePipe } from './pipes/language.pipe';
-import { ConfirmationDirective } from './confirmation/confirmation.directive';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AllowAccessCartGuard } from './allow-access-cart.guard';
-import { AllowAddNewProductGuard } from './allow-add-new-product.guard';
-import { PermissionDeniedComponent } from '../app/permission-denied/permission-denied.component';
-import { EditProductButtonComponent } from './edit-product-button/edit-product-button.component';
-import { ProductNotFoundComponent } from './product-not-found/product-not-found.component'
-import { allowNavigateAwayGuard } from './allow-navigate-away.guard';
-
-const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'products/:id/edit-product', component: ProductFormComponent, canActivate: [AllowAddNewProductGuard], canDeactivate: [allowNavigateAwayGuard], data: {editProduct: true} },
-  { path: 'products/:id/productNotFound', component: ProductNotFoundComponent},
-  { path: 'contact', component: ContactComponent },
-  { path: 'cart', component: CartComponent, canActivate: [AllowAccessCartGuard], children:[{
-    path: 'products/:id',
-    component: ProductDetailsComponent
-  }]
-  },
-  { path: 'add-new-product', component: ProductFormComponent, canActivate: [AllowAddNewProductGuard], canDeactivate: [allowNavigateAwayGuard], data: {editProduct: false}},
-  { path: 'permission-denied', component: PermissionDeniedComponent},
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
-]
+import { ConfirmationDirective } from './directives/confirmation/confirmation.directive';
+import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
+import { PermissionDeniedComponent } from './components/error/permission-denied/permission-denied.component';
+import { EditProductButtonComponent } from './components/edit-product-button/edit-product-button.component';
+import { ProductNotFoundComponent } from './components/error/product-not-found/product-not-found.component'
 
 
 @NgModule({
@@ -80,10 +56,9 @@ const routes: Routes = [
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    ReactiveFormsModule
   ],
-  providers: [allowNavigateAwayGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,7 +20,7 @@ import { DataService } from '../../services/data.service';
 })
 export class ProductsComponent implements OnInit {
 
-  defaultCategory: string;
+  allCategories: string;
   currentCategoryId: string;
   productArray: Product[];
   categoryArray: Category[];
@@ -30,15 +30,15 @@ export class ProductsComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.defaultCategory = 'All';
-    this.currentCategoryId = this.defaultCategory; // By default show all products
+    this.allCategories = 'All';
+    this.currentCategoryId = this.allCategories; // By default show all products
     this.productArray = this.dataService.getProducts();
     this.categoryArray = this.dataService.getCategories(); 
   }
 
   filterCategory(categoryId : string) {
     this.currentCategoryId = categoryId;
-    if ( this.currentCategoryId !== this.defaultCategory) {
+    if ( this.currentCategoryId !== this.allCategories) {
       this.filteredArray = this.productArray.filter((product) => {
         return product.categoryId ===  this.currentCategoryId ;
       });

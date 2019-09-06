@@ -1,6 +1,8 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,12 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
-  @Output() openHome = new EventEmitter
   isValid: boolean;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, 
+              private loginService: LoginService,
+              private router: Router,
+              private readonly location: Location) {
     this.loginForm = fb.group({
       username: '',
       password: ''
@@ -28,7 +32,7 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.get('username').value;
     const password = this.loginForm.get('password').value;
     if (this.loginService.isValid(username, password)) { // Valid username and password
-        this.openHome.emit();
+      this.router.navigate(['/']);
     }
     else {
       this.isValid = true;

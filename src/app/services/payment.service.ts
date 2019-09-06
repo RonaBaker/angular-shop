@@ -26,21 +26,21 @@ export class PaymentService {
 
   removeCartQuantity(product: Product) {
     let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const item = user.cartQuantity.find(p => p.product.title === product.title);
+    const item = user.cartQuantity.find(p => p.product.id === product.id);
     user.countItems -= item.quantity;
     user.cartQuantity.splice(user.cartQuantity.findIndex(p => p.product.title === product.title), 1);
   }
 
   addQuantity(product: Product) {
     let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.title === product.title);
+    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === product.id);
     user.cartQuantity[itemIndex].quantity++;
     user.countItems++;
   }
 
   removeQuantity(product: Product) {
     let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.title === product.title);
+    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === product.id);
     if(user.cartQuantity[itemIndex].quantity != 1){
       user.cartQuantity[itemIndex].quantity--;
       user.countItems--;
@@ -49,14 +49,14 @@ export class PaymentService {
 
   getProductQuantity(product: Product) {
     let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.title === product.title);
+    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === product.id);
     return user.cartQuantity[itemIndex].quantity;
   }
 
-  getProductTotalPrice(productTitle: string) {
+  getProductTotalPrice(productId: string) {
     let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
     this.checkUpdates();
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.title === productTitle);
+    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === productId);
     const quantity = user.cartQuantity[itemIndex].quantity;
     const price = user.cartQuantity[itemIndex].product.price;
     return quantity*price;
@@ -66,7 +66,7 @@ export class PaymentService {
     let totalPayment = 0;
     let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
     for(let item of user.cartQuantity) {
-      totalPayment += this.getProductTotalPrice(item.product.title);
+      totalPayment += this.getProductTotalPrice(item.product.id);
     }
     return totalPayment
   }
@@ -80,7 +80,7 @@ export class PaymentService {
     const cartQuantity = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser ).cartQuantity;
     const products = this.dataService.getProducts();
     for(let i = 0; i < cartQuantity.length; i++) {
-      const product = products.find (p => p.title === cartQuantity[i].product.title);
+      const product = products.find (p => p.id === cartQuantity[i].product.id);
       cartQuantity[i].product = product;
     }
   }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Product} from '../model/product';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-action',
@@ -13,7 +14,7 @@ export class CartActionComponent implements OnInit {
   @Input() product: Product;
   cartAction: string;
 
-  constructor(private cartService: CartService, private loginService: LoginService) { }
+  constructor(private cartService: CartService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     if(this.cartService.findCartItem(this.product)) { 
@@ -28,6 +29,9 @@ export class CartActionComponent implements OnInit {
     if (this.cartService.findCartItem(product)) { // Product is in cart
       this.cartAction = 'Add To Cart';
       this.cartService.removeCartItem(product);
+      if (this.router.url.includes('cart')) {
+        this.router.navigate(['/cart']);
+      }
     }
     else {
       this.cartAction = 'Remove From Cart';

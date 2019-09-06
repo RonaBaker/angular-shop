@@ -18,7 +18,18 @@
                 name="image"                     
                 formControlName="image">
             <div *ngIf="imageForm.invalid && (imageForm.dirty || imageForm.touched)">
-                <div class="validation-error" *ngIf="imageForm.errors.required">Image is required</div>
+                <div class="validation-error" *ngIf="id.errors.required">id is required</div>
+            </div>
+        </div>
+        <div class="form-input">
+            <label for="id">Id</label>
+            <input 
+                id="id" 
+                type="text" 
+                name="id"                     
+                formControlName="id">
+            <div *ngIf="idForm.invalid && (idForm.dirty || idForm.touched)">
+                <div class="validation-error" *ngIf="idForm.errors.required">Image is required</div>
             </div>
         </div>
         <div class="form-input">

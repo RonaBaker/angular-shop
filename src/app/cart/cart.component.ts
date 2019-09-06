@@ -11,7 +11,6 @@ import { LoginService } from '../services/login.service';
 })
 export class CartComponent implements OnInit {
 
-  @Output() productDetails = new EventEmitter();
   cart: Product[];
   constructor(private cartService: CartService, private paymentService: PaymentService, private loginService: LoginService) { }
 
@@ -25,10 +24,6 @@ export class CartComponent implements OnInit {
 
   getTotalPayment() {
     return this.paymentService.getTotalPayment();
-  }
-
-  viewProductDetails(event :{product: Product, from: string}) {
-    this.productDetails.emit(event);
   }
 
   isLoggedIn() {

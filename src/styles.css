@@ -66,5 +66,8 @@ form {
     cursor: pointer;
     background: white;
     color: black;
+}
 
+body {
+    overflow: scroll;
 }

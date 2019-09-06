@@ -3,6 +3,7 @@ import { CartService} from '../services/cart.service';
 import { PaymentService} from '../services/payment.service';
 import { LoginService } from '../services/login.service';
 import { LanguageService } from '../services/language.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +13,14 @@ import { LanguageService } from '../services/language.service';
 export class HeaderComponent implements OnInit {
 
   @Output() isOpen = new EventEmitter();
-  @Output() openCart = new EventEmitter();
-  @Output() openLogin = new EventEmitter();
   languages: string[];
   activeLang: string;
 
   constructor(private cartService: CartService, 
               private paymentService: PaymentService, 
               private loginService: LoginService,
-              private languageService: LanguageService) { }
+              private languageService: LanguageService,
+              private router: Router) { }
 
   ngOnInit() {
     this.languages = this.languageService.providedLanguages;
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLogin() {
-     if (this.loginService.isLoggedIn()) {
+     if (this.isLoggedIn()) {
        return 'logout';
      }
      return 'login';
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickCart() {
-    this.openCart.emit();
+    this.router.navigate(['/cart']);
   }
 
   getNumCartItems() {
@@ -52,11 +52,12 @@ export class HeaderComponent implements OnInit {
   }
 
   loginView() {
-    if (this.loginService.isLoggedIn()) {
+    if (this.isLoggedIn()) {
       this.loginService.logout();
+      this.router.navigate(['../']);
     }
     else {
-      this.openLogin.emit();
+      this.router.navigate(['/login']);
     }
   }
 

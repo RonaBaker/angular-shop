@@ -20,7 +20,7 @@ export class DataService {
   }
 
   addProduct(product: Product) {
-    let productIndex = this.productsArray.findIndex(p => p.title === product.title);
+    let productIndex = this.productsArray.findIndex(p => p.id === product.id);
     if (productIndex === -1) { // New product
       this.productsArray.push(product);
       return true;
@@ -31,5 +31,9 @@ export class DataService {
 
   getCatogory(categoryId: string) {
     return this.categoriesArray.find(category => category.id === categoryId)
+  }
+
+  getProduct(id: string) :Product {
+    return this.productsArray.find(p => p.id === id);
   }
 }

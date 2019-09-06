@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product} from '../../model/product';
-import { LoginService } from 'src/app/services/login.service';
-
 
 @Component({
   selector: 'app-product-item',
@@ -10,27 +8,11 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ProductItemComponent implements OnInit {
 
-  @Output() productDetails = new EventEmitter();
-  @Output() edit = new EventEmitter();
   @Input() product: Product;
 
-  constructor(private loginService: LoginService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  changeContentProduct() {
-    this.productDetails.emit({product: this.product, from: 'products'});
-  }
-
-  isPermitted() {
-    if (this.loginService.isLoggedIn() && this.loginService.hasPermission()) {
-      return true;
-    }
-  }
-
-  editProduct() {
-    this.edit.emit(this.product);
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Product } from '../../model/product';
 import { CartService } from '../../services/cart.service';
 import { PaymentService } from '../../services/payment.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cart-item',
@@ -10,11 +11,11 @@ import { PaymentService } from '../../services/payment.service';
 })
 export class CartItemComponent implements OnInit {
 
-  @Output() Content = new EventEmitter();
   @Input() cartItem: Product;
   constructor(private cartService: CartService, private paymentService: PaymentService) { }
 
   ngOnInit() {
+
   }
 
   addQuantity() {
@@ -30,16 +31,12 @@ export class CartItemComponent implements OnInit {
   }
 
   getTotalPrice() {
-     return this.paymentService.getProductTotalPrice(this.cartItem.title);
+     return this.paymentService.getProductTotalPrice(this.cartItem.id);
 
   }
 
   removeCartItem() {
     this.cartService.removeCartItem(this.cartItem);
-  }
-
-  changeContent() {
-    this.Content.emit({product: this.cartItem, from: 'cart'});
   }
 
 }

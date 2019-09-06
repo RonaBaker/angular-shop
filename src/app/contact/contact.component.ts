@@ -8,9 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
-  @Input() contentState: string;
+  // @Input() contentState: string;
   confirmationMsg: string;
-  userResponse: string;
+  // userResponse: string;
   email: string;
   subject: string;
   message: string;

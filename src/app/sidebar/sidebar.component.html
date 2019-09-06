@@ -1,17 +1,36 @@
 
 <div>
     <ul>
-        <li class="menu-item" (click)="changeContent('HOME')">{{ 'HOME' | language : defaultLang : 'home' }}</li>
-        <li class="menu-item" (click)="changeContent('ABOUT')">{{'ABOUT' | language : defaultLang : 'about'}}</li>
-        <li class="menu-item" (click)="changeContent('PRODUCTS')">{{'PRODUCTS' | language :defaultLang : 'products'}}</li>
-        <li class="menu-item" (click)="changeContent('CONTACT')">{{'CONTACT' | language: defaultLang : 'contact'}}</li>
-        <li class="menu-item" (click)="changeContent('CART')">{{'CART' | language: defaultLang : 'cart'}}</li>        
-        <li class="menu-item" (click)="changeContent('ADD-PRODUCT')" *ngIf="isPermitted()" >{{'ADD PRODUCT' | language: defaultLang : 'addProduct'}}</li>
+        <li class="menu-item" 
+            (click)="toggleMenu()" 
+            routerLink="/home"
+            routerLinkActive="active-router">{{ 'HOME' | language : defaultLang : 'home' }}</li>
+        <li class="menu-item" 
+            (click)="toggleMenu()" 
+            routerLink="/about" 
+            routerLinkActive="active-router">{{'ABOUT' | language : defaultLang : 'about'}}</li>
+        <li class="menu-item" 
+            (click)="toggleMenu()" 
+            routerLink="/products" 
+            routerLinkActive="active-router">{{'PRODUCTS' | language :defaultLang : 'products'}}</li>
+        <li class="menu-item" 
+            (click)="toggleMenu()" 
+            routerLink="/contact" 
+            routerLinkActive="active-router">{{'CONTACT' | language: defaultLang : 'contact'}}</li>
+        <li class="menu-item" 
+            (click)="toggleMenu()" 
+            routerLink="/cart" 
+            routerLinkActive="active-router">{{'CART' | language: defaultLang : 'cart'}}</li>        
+        <li class="menu-item"
+            (click)="toggleMenu()" 
+            *ngIf="isPermitted()"
+            routerLink="/add-new-product"
+            routerLinkActive="active-router">{{'ADD PRODUCT' | language: defaultLang : 'addProduct'}}</li>
         <app-social-tab>
             <a #tab href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a> 
             <a #tab href="https://www.gmail.com"><i class="fas fa-envelope"></i></a>
             <a #tab href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
         </app-social-tab>      
     </ul>
-
+ 
 </div>

@@ -4,22 +4,28 @@ import { LoginService } from '../services/login.service';
 import { Category } from '../model/category';
 import { Product } from '../model/product';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { ActivatedRoute, Router, RouterState, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  selector: 'app-product-form',
+  templateUrl: './product-form.component.html',
+  styleUrls: ['./product-form.component.css']
 })
-export class AddProductComponent implements OnChanges, OnInit{
+export class ProductFormComponent implements OnInit{
 
   categoryArray: Category[];
   productForm: FormGroup;
-  @Input() patchProduct: Product;
   title = 'Add Product'
 
-  constructor(private loginService: LoginService, private dataService: DataService, private fb: FormBuilder) {
+  constructor(private loginService: LoginService, 
+              private dataService: DataService, 
+              private fb: FormBuilder, 
+              private route: ActivatedRoute,
+              private router: Router) {
     this.productForm = fb.group({
       category: [null, Validators.required],
+      id: ['', Validators.required],
       image: ['', Validators.required],
       title: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(1)]],
@@ -27,8 +33,13 @@ export class AddProductComponent implements OnChanges, OnInit{
     })
    }
 
+
   get categoryForm() : AbstractControl {
     return this.productForm.get('category');
+  }
+
+  get idForm() : AbstractControl {
+    return this.productForm.get('id');
   } 
 
   get imageForm() : AbstractControl {
@@ -48,17 +59,28 @@ export class AddProductComponent implements OnChanges, OnInit{
   }
 
   ngOnInit() {
-    this.categoryArray = this.dataService.getCategories(); 
+    this.categoryArray = this.dataService.getCategories();
+    if (this.route.snapshot.data['editProduct']) {
+      const id = this.route.snapshot.paramMap.get('id');
+      let product = this.dataService.getProduct(id);
+      if (product !== undefined) {
+        this.setProductForm(product);
+      }
+      else {
+        this.router.navigate(['products', id, 'productNotFound']);
+      }
+    }
   }
 
-  ngOnChanges() {
-    const category = this.dataService.getCatogory(this.patchProduct.categoryId);
+  setProductForm(product: Product) {
+    const category = this.dataService.getCatogory(product.categoryId);
     this.productForm.setValue({
       category: category,
-      image: this.patchProduct.image,
-      title: this.patchProduct.title,
-      price: this.patchProduct.price,
-      description: this.patchProduct.description
+      image: product.image,
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      description: product.description
     });
     this.title = 'Edit Product'
     }
@@ -66,6 +88,7 @@ export class AddProductComponent implements OnChanges, OnInit{
   onSubmit() {
     const tempProduct = this.productForm.value;
     const product: Product = {
+      id: tempProduct.id,
       categoryId: tempProduct.category.id,
       image: tempProduct.image,
       title: tempProduct.title,
@@ -85,5 +108,17 @@ export class AddProductComponent implements OnChanges, OnInit{
   isLoggedIn() {
     return this.loginService.isLoggedIn();
   }
-    
-}
+
+  canDeactivate() : Observable<boolean> | Promise<boolean> | boolean {
+    if (this.productForm.dirty) {
+      const res = window.confirm('Discard Changes?');
+      if (res === true) {
+       return true;
+      }
+       else {
+         return false;
+       }
+     }
+     else return true;
+  } 
+} 

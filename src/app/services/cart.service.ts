@@ -35,7 +35,7 @@ export class CartService {
 
   removeCartItem(product: Product) {
     const user = this.cartUser.find(u => u.user === this.loginService.activeUser);
-    user.cart.splice(user.cart.findIndex(p => p.title === product.title), 1);
+    user.cart.splice(user.cart.findIndex(p => p.id === product.id), 1);
     this.paymentService.removeCartQuantity(product)
   }
 
@@ -44,7 +44,7 @@ export class CartService {
       this.initCart();
     }
     const user = this.cartUser.find(u => u.user === this.loginService.activeUser);
-    const item = user.cart.find(p => p.title === product.title);
+    const item = user.cart.find(p => p.id === product.id);
     if (item === undefined) {
       return false;
     }

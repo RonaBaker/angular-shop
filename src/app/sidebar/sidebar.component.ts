@@ -10,15 +10,13 @@ import { LanguageService } from '../services/language.service';
 export class SidebarComponent implements OnInit {
 
   @Output() content = new EventEmitter();
-
-  menu: string[];
   constructor(private loginService: LoginService, private languageService: LanguageService) { }
 
   ngOnInit() {
   }
 
-  changeContent(val: string) {
-    this.content.emit(val);
+  toggleMenu() {
+    this.content.emit();
   }
 
   isPermitted() {

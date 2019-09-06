@@ -1,10 +1,10 @@
 <div class="item">
     <div>
-        <img src="{{product.image}}" (click)="changeContentProduct()">
+        <img src="{{product.image}}" [routerLink]="['/products', product.id]">
         <h3>{{product.title}}</h3>
         <div class="container-action">
             <app-cart-action [product]="product"></app-cart-action>
-            <button class="action-button" *ngIf="isPermitted()" (click)="editProduct()">Edit Product</button>
+            <app-edit-product-button [routerLink]="['/products', product.id, 'edit-product']"></app-edit-product-button>
         </div>
     </div>
 </div>

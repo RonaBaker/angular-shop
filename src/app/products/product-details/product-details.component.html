@@ -1,8 +1,4 @@
 <div class="line"></div>
-<div>
-        <button class="return-button" *ngIf="fromElement === 'products'" (click)="returnToProductsView()">Return to all products</button>
-        <button class="return-button" *ngIf="fromElement === 'cart'" (click)="returnToCartView()">Return to cart</button>
-</div>
 <div class="product-details">
         <div><img src="{{productDetails.image}}"></div>
         <div class="details">
@@ -11,7 +7,7 @@
                 <p class="price"><b>price:</b> {{productDetails.price | currency:'ILS'}} </p>
                 <div class="container-action">
                         <app-cart-action [product]="productDetails"></app-cart-action>
-                        <button class="action-button" *ngIf="isPermitted()" (click)="editProduct()">Edit Product</button>
+                        <app-edit-product-button [routerLink]="['/products', productDetails.id, 'edit-product']"></app-edit-product-button>
                 </div>
         </div>
 </div>

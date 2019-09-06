@@ -1,14 +1,12 @@
-<div *ngIf="isLoggedIn()" class="cart-container">
+<div class="cart-container">
     <h1>Your Cart</h1>
     <p *ngIf="getNumCartItems() === 0">Your cart is empty</p>
     <div class="cart-items" *ngIf="getNumCartItems() > 0">
         <p>You have {{getNumCartItems()}} items in your cart</p>
-        <app-cart-item *ngFor="let item of cart" [cartItem]="item" (Content)="viewProductDetails($event)"></app-cart-item>
+        <app-cart-item *ngFor="let item of cart" [cartItem]="item"></app-cart-item>
         <p class="total-payment">Total Payment: {{getTotalPayment() | currency:'ILS'}}
             <button>Checkout</button>
         </p>
     </div>
-</div>
-<div *ngIf="!isLoggedIn()">
-    <h3>Please login in order to see your cart</h3>
+    <router-outlet></router-outlet>
 </div>

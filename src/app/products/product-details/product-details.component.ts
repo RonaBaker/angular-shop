@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { LoginService } from 'src/app/services/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-product-details',
@@ -9,35 +11,20 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  @Output() productsView = new EventEmitter();
-  @Output() cartView = new EventEmitter();
-  @Input() productDetails: Product;
+  productDetails: Product;
   @Input() contentState: string;
-  @Input() fromElement: string;
-  @Output() edit = new EventEmitter();
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private dataService: DataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(p => this.loadProduct(p.get('id')));
   }
 
-  returnToProductsView() {
-    this.productsView.emit();
-  }
-
-  returnToCartView() {
-    this.cartView.emit();
-  }
-
-  isPermitted() {
-    if (this.loginService.isLoggedIn() && this.loginService.hasPermission()) {
-      return true;
+  loadProduct(productId: string) {
+    this.productDetails = this.dataService.getProduct(productId);
+    if (this.productDetails === undefined) {
+      this.router.navigate(['products', productId, 'productNotFound'])
     }
   }
-
-  editProduct() {
-    this.edit.emit(this.productDetails);
-  }
-
 
 }

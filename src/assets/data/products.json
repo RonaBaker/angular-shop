@@ -1,5 +1,6 @@
 [{
     "categoryId":"bout",
+    "id": "1",
     "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_3799-edit.jpg",
     "title":"Love ale",
     "price": 14,
@@ -7,6 +8,7 @@
 },
 {
     "categoryId":"imp",
+    "id": "2",
     "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_2366-edit.jpg",
     "title":"Kasteel Triple",
     "price": 17.5,
@@ -14,6 +16,7 @@
 },
 {
     "categoryId":"imp",
+    "id": "3",
     "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_2977-edit.jpg",
     "title":"Mc Chouff",
     "price": 27,
@@ -22,6 +25,7 @@
 },
 {
     "categoryId":"bout",
+    "id": "4",
     "image":"https://beerandbeyond.com/bnbshop/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_3791-edit.jpg",
     "title":"Barzel",
     "price": 14,

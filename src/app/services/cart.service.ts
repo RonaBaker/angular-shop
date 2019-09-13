@@ -1,65 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
 import { PaymentService } from './payment.service'
-import { LoginService } from './login.service';
 import { DataService } from './data.service';
-
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ProviderAstType } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  cartUser : {user: string, cart: Product[]}[] = [];
+  private _cart = new BehaviorSubject<Product[]>([]);
+  private cart = this._cart.asObservable();
 
-  constructor(private paymentService: PaymentService, private loginService: LoginService, private dataService: DataService) { }
-
-  initCart() {
-    const userCart = this.cartUser.find(u => u.user === this.loginService.activeUser);
-    if (userCart === undefined) { // First time, initialize cart
-      this.cartUser.push({user: this.loginService.activeUser, cart: []})
-    }
-  }
+  constructor(private paymentService: PaymentService) { }
 
   getCart() {
-    this.initCart();
-    this.checkUpdates();
-    return this.cartUser.find(u => u.user === this.loginService.activeUser).cart;
+    return this.cart;
+  }
+
+  updateCart(product: Product) {
+    let productIndex = this._cart.value.findIndex(p => p.id === product.id);
+    this._cart.value.splice(productIndex, 1, product); // update existing product
+    this.paymentService.updateChanges(product)
+    this._cart.next(this._cart.value);
+
   }
 
   addCartItem(product: Product) {
-    const user = this.cartUser.find(u => u.user === this.loginService.activeUser);
-    user.cart.push(product);
+    this._cart.value.push(product);
     this.paymentService.updateQuantity(product);
+    this._cart.next(this._cart.value);
   }
 
   removeCartItem(product: Product) {
-    const user = this.cartUser.find(u => u.user === this.loginService.activeUser);
-    user.cart.splice(user.cart.findIndex(p => p.id === product.id), 1);
-    this.paymentService.removeCartQuantity(product)
+    this._cart.value.splice(this._cart.value.findIndex(p => p.id === product.id), 1);
+    this.paymentService.removeCartQuantity(product);
+    this._cart.next(this._cart.value);
   }
 
   findCartItem(product: Product): boolean {
-    if (this.cartUser.find(u => u.user === this.loginService.activeUser) === undefined) {
-      this.initCart();
-    }
-    const user = this.cartUser.find(u => u.user === this.loginService.activeUser);
-    const item = user.cart.find(p => p.id === product.id);
+    const item = this._cart.value.find(p => p.id === product.id);
     if (item === undefined) {
       return false;
     }
     return true;
   }
-  
-  checkUpdates() {
-    let cart = this.cartUser.find(u => u.user === this.loginService.activeUser).cart;
-    let products = this.dataService.getProducts();
-    for(let i = 0; i < cart.length; i++) { 
-      const product = products.find(p => p.title === cart[i].title);
-      cart[i] = product;
-    }
-    
-  }
-
-
 }

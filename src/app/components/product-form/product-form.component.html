@@ -4,7 +4,7 @@
         <div class="form-input">
             <label>Category</label>
             <select formControlName="category">
-                <option *ngFor="let category of categoryArray" [ngValue]="category">{{ category.title }}</option>
+                <option *ngFor="let category of (categoryArray | async)"[ngValue]="category">{{ category.title }}</option>
             </select> 
             <div *ngIf="categoryForm.invalid && (categoryForm.dirty || categoryForm.touched)">
                     <div class="validation-error" *ngIf="categoryForm.errors.required">Category is required</div>

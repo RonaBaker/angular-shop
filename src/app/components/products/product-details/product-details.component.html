@@ -1,13 +1,14 @@
 <div class="line"></div>
-<div class="product-details">
-        <div><img src="{{productDetails.image}}"></div>
+<div class="product-details" *ngIf="productDetails; let p;">
+        <ng-container></ng-container>
+        <div><img src="{{p.image}}"></div>
         <div class="details">
-                <h3>{{productDetails.title}}</h3>
-                <p class="description">{{productDetails.description}}</p>
-                <p class="price"><b>price:</b> {{productDetails.price | currency:'ILS'}} </p>
+                <h3>{{p.title}}</h3>
+                <p class="description">{{p.description}}</p>
+                <p class="price"><b>price:</b> {{p.price | currency:'ILS'}} </p>
                 <div class="container-action">
-                        <app-cart-action [product]="productDetails"></app-cart-action>
-                        <app-edit-product-button [routerLink]="['/products', productDetails.id, 'edit-product']"></app-edit-product-button>
+                        <app-cart-action [product]="p"></app-cart-action>
+                        <app-edit-product-button [routerLink]="['/products', p.id, 'edit-product']"></app-edit-product-button>
                 </div>
         </div>
 </div>

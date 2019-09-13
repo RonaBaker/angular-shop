@@ -1,9 +1,10 @@
-<div class="cart-container">
+<div class="cart-container" *ngIf="cart">
     <h1>Your Cart</h1>
-    <p *ngIf="getNumCartItems() === 0">Your cart is empty</p>
-    <div class="cart-items" *ngIf="getNumCartItems() > 0">
-        <p>You have {{getNumCartItems()}} items in your cart</p>
-        <app-cart-item *ngFor="let item of cart" [cartItem]="item"></app-cart-item>
+    <p *ngIf="(itemCount| async) === 0">Your cart is empty</p>
+    <div class="cart-items" *ngIf="(itemCount| async) > 0">
+        <p>You have {{ itemCount| async }} items in your cart</p>
+        <app-cart-item *ngFor="let item of (cart | async )" [cartItem]="item"></app-cart-item>
+        <p></p>
         <p class="total-payment">Total Payment: {{getTotalPayment() | currency:'ILS'}}
             <button>Checkout</button>
         </p>

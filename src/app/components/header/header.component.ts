@@ -4,6 +4,7 @@ import { PaymentService} from '../../services/payment.service';
 import { LoginService } from '../../services/login.service';
 import { LanguageService } from '../../services/language.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,15 @@ export class HeaderComponent implements OnInit {
   @Output() isOpen = new EventEmitter();
   languages: string[];
   activeLang: string;
+  noCartItems: number;
+  subscription: Subscription;
 
-  constructor(private cartService: CartService, 
-              private paymentService: PaymentService, 
+  constructor(private paymentService: PaymentService, 
               private loginService: LoginService,
               private languageService: LanguageService,
-              private router: Router) { }
+              private router: Router) {
+                this.subscription = paymentService.countItems.subscribe(cnt => this.noCartItems = cnt);
+               }
 
   ngOnInit() {
     this.languages = this.languageService.providedLanguages;
@@ -47,10 +51,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
-  getNumCartItems() {
-    return this.paymentService.getNumberItems();
-  }
-
   loginView() {
     if (this.isLoggedIn()) {
       this.loginService.logout();
@@ -63,6 +63,10 @@ export class HeaderComponent implements OnInit {
 
   isLoggedIn() {
     return this.loginService.isLoggedIn();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

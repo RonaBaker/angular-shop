@@ -25,7 +25,8 @@ import { PageNotFoundComponent } from './components/error/page-not-found/page-no
 import { PermissionDeniedComponent } from './components/error/permission-denied/permission-denied.component';
 import { EditProductButtonComponent } from './components/edit-product-button/edit-product-button.component';
 import { ProductNotFoundComponent } from './components/error/product-not-found/product-not-found.component'
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpCorrelationInterceptor } from './http-logging-interceptor';
 
 @NgModule({
   declarations: [
@@ -56,9 +57,10 @@ import { ProductNotFoundComponent } from './components/error/product-not-found/p
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpCorrelationInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

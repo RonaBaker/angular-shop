@@ -6,6 +6,7 @@ import { Product } from '../../model/product';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router, RouterState, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-form',
@@ -14,12 +15,13 @@ import { Observable } from 'rxjs';
 })
 export class ProductFormComponent implements OnInit{
 
-  categoryArray: Category[];
+  categoryArray: Observable<Category[]>;
   productForm: FormGroup;
   title = 'Add Product'
 
   constructor(private loginService: LoginService, 
-              private dataService: DataService, 
+              private dataService: DataService,
+              private cartService: CartService, 
               private fb: FormBuilder, 
               private route: ActivatedRoute,
               private router: Router) {
@@ -60,20 +62,29 @@ export class ProductFormComponent implements OnInit{
 
   ngOnInit() {
     this.categoryArray = this.dataService.getCategories();
-    if (this.route.snapshot.data['editProduct']) {
+    if (this.route.snapshot.data['editProduct']) { // true when we want to edit the product
       const id = this.route.snapshot.paramMap.get('id');
-      let product = this.dataService.getProduct(id);
-      if (product !== undefined) {
-        this.setProductForm(product);
-      }
-      else {
-        this.router.navigate(['products', id, 'productNotFound']);
-      }
-    }
+      this.dataService.getProduct(id)
+      .then( product => {
+        if (product !== undefined) {
+          this.setProductForm(product);
+        }
+        else {
+          this.router.navigate(['products', id, 'productNotFound']);
+        }
+      })
+      .catch(err => console.log(err))
+
+    } 
   }
 
-  setProductForm(product: Product) {
-    const category = this.dataService.getCatogory(product.categoryId);
+  async setProductForm(product: Product) { // Called when we want to edit the product
+    let category: Category;
+     await this.dataService.getCategory(product.categoryId).then(
+      c => { 
+        category = c;
+      })
+      .catch(err => console.log(err));
     this.productForm.setValue({
       category: category,
       image: product.image,
@@ -101,6 +112,7 @@ export class ProductFormComponent implements OnInit{
     }
     else { // Product has been editted
       window.alert("Product has been editted successfully");
+      this.cartService.updateCart(product);
     }
     this.productForm.reset();
   }

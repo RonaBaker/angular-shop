@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { PaymentService } from '../../services/payment.service';
 import { Product } from '../../model/product';
 import { LoginService } from '../../services/login.service';
+import { Observable } from 'rxjs';;
 
 @Component({
   selector: 'app-cart',
@@ -11,15 +12,15 @@ import { LoginService } from '../../services/login.service';
 })
 export class CartComponent implements OnInit {
 
-  cart: Product[];
-  constructor(private cartService: CartService, private paymentService: PaymentService, private loginService: LoginService) { }
+  cart: Observable<Product[]>;
+  itemCount: Observable<number>
+  constructor(private cartService: CartService, 
+              private paymentService: PaymentService,
+              private loginService: LoginService) { }
 
   ngOnInit() {
     this.cart = this.cartService.getCart();
-  }
-
-  getNumCartItems() {
-    return this.paymentService.getNumberItems();
+    this.itemCount = this.paymentService.countItems;
   }
 
   getTotalPayment() {

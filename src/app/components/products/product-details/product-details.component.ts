@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { LoginService } from 'src/app/services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
@@ -12,22 +12,25 @@ import { Subscription } from 'rxjs';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  productDetails: Product;
-  @Input() contentState: string;
+  productDetails: Product = null;
   subscription: Subscription;
 
   constructor(private loginService: LoginService, private dataService: DataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.subscription = this.route.paramMap.subscribe(p => this.loadProduct(p.get('id')));
+    this.subscription = this.route.paramMap.subscribe(p => { this.loadProduct(p.get('id')) });
   }
 
   loadProduct(productId: string) {
-    this.productDetails = this.dataService.getProduct(productId);
-    if (this.productDetails === undefined) {
-      this.router.navigate(['products', productId, 'productNotFound'])
+    this.dataService.getProduct(productId)
+      .then(o => {
+        if (o === undefined) {
+          this.router.navigate(['products', productId, 'productNotFound'])
+        }
+        this.productDetails = o;
+      })
+      .catch(err => console.log(err));
     }
-  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

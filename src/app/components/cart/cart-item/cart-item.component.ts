@@ -15,7 +15,6 @@ export class CartItemComponent implements OnInit {
   constructor(private cartService: CartService, private paymentService: PaymentService) { }
 
   ngOnInit() {
-
   }
 
   addQuantity() {

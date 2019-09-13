@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Payment } from '../model/product-quantity';
 import { Product } from '../model/product';
-import { LoginService } from './login.service';
+
+import { BehaviorSubject } from 'rxjs';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -9,80 +10,75 @@ import { DataService } from './data.service';
 })
 export class PaymentService {
 
-  cartUserQuantity : {user: string, cartQuantity: Payment[], countItems: number}[] = [];
+  private cartQuantity: Payment[]
+  private _countItems =  new BehaviorSubject<number>(0);
+  public countItems = this._countItems.asObservable();
+  private noItems = 0;
 
-  constructor(private loginService: LoginService, private dataService: DataService) {
-    for (let u of loginService.getUsers()) {
-      this.cartUserQuantity.push({user: u.username, cartQuantity: [], countItems: 0 });
-    }
+  constructor() {
+      this.cartQuantity = [];
   }
 
   updateQuantity(product: Product) {
     let item: Payment = { product: product, quantity: 1};
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    user.cartQuantity.push(item);
-    user.countItems++;
+    this.cartQuantity.push(item);
+    this.noItems++;
+    this.emitChanges();
+  }
+
+  private emitChanges() {
+    this._countItems.next(this.noItems);
   }
 
   removeCartQuantity(product: Product) {
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const item = user.cartQuantity.find(p => p.product.id === product.id);
-    user.countItems -= item.quantity;
-    user.cartQuantity.splice(user.cartQuantity.findIndex(p => p.product.title === product.title), 1);
+    const item = this.cartQuantity.find(p => p.product.id === product.id);
+    this.noItems -= item.quantity;
+    this.emitChanges();
+    this.cartQuantity.splice(this.cartQuantity.findIndex(p => p.product.title === product.title), 1);
   }
 
   addQuantity(product: Product) {
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === product.id);
-    user.cartQuantity[itemIndex].quantity++;
-    user.countItems++;
+    const itemIndex = this.cartQuantity.findIndex(p => p.product.id === product.id);
+    this.cartQuantity[itemIndex].quantity++;
+    this.noItems++;
+    this.emitChanges();
   }
 
   removeQuantity(product: Product) {
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === product.id);
-    if(user.cartQuantity[itemIndex].quantity != 1){
-      user.cartQuantity[itemIndex].quantity--;
-      user.countItems--;
+    const itemIndex = this.cartQuantity.findIndex(p => p.product.id === product.id);
+    if(this.cartQuantity[itemIndex].quantity != 1){
+      this.cartQuantity[itemIndex].quantity--;
+      this.noItems--;
+      this.emitChanges();
     }
   }
 
   getProductQuantity(product: Product) {
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === product.id);
-    return user.cartQuantity[itemIndex].quantity;
+    const itemIndex = this.cartQuantity.findIndex(p => p.product.id === product.id);
+    return this.cartQuantity[itemIndex].quantity;
   }
 
   getProductTotalPrice(productId: string) {
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    this.checkUpdates();
-    const itemIndex = user.cartQuantity.findIndex(p => p.product.id === productId);
-    const quantity = user.cartQuantity[itemIndex].quantity;
-    const price = user.cartQuantity[itemIndex].product.price;
+    const itemIndex = this.cartQuantity.findIndex(p => p.product.id === productId);
+    const quantity = this.cartQuantity[itemIndex].quantity;
+    const price = this.cartQuantity[itemIndex].product.price;
     return quantity*price;
   }
 
   getTotalPayment() {
     let totalPayment = 0;
-    let user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser );
-    for(let item of user.cartQuantity) {
+    for(let item of this.cartQuantity) {
       totalPayment += this.getProductTotalPrice(item.product.id);
     }
-    return totalPayment
+    return totalPayment;
   }
 
-  getNumberItems() {
-    const user = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser )
-    return user.countItems;
+  updateChanges(product: Product) {
+      const index = this.cartQuantity.findIndex(p => p.product.id === product.id);
+      this.cartQuantity[index].product = product;
   }
 
-  checkUpdates() {
-    const cartQuantity = this.cartUserQuantity.find( u => u.user === this.loginService.activeUser ).cartQuantity;
-    const products = this.dataService.getProducts();
-    for(let i = 0; i < cartQuantity.length; i++) {
-      const product = products.find (p => p.id === cartQuantity[i].product.id);
-      cartQuantity[i].product = product;
-    }
+  getNumCartItems() {
+    return this.noItems;
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit,} from '@angular/core';
-import { Product } from '../app/model/product';
+import { Product } from './core/model/product';
 import { trigger, state, style, transition, query, animate, group} from '@angular/animations';
 import { routerTransition } from './animations/route-transitions';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import languages from '../../assets/data/language.json';
-import { Language } from '../model/language';
+import { Language } from '../core/model/language';
 
 @Injectable({
   providedIn: 'root'

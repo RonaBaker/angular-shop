@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import products from '../../assets/data/products.json';
 import categories from '../../assets/data/categories.json';
-import { Product } from '../model/product';
-import { Category } from '../model/category';
+import { Product } from '../core/model/product';
+import { Category } from '../core/model/category';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap, take, filter, share } from 'rxjs/operators';
@@ -69,7 +69,7 @@ export class DataService {
       .pipe(
         filter(o => o.length > 0), // return a valid value (ignore undefined when theres a valid value)
         map(o => o.find(p => p.id === id)),
-        take(1) // Takes the first returned value
+         take(1) // Takes the first returned value
       )
       .toPromise()
       .catch(() => Promise.reject(this.error));

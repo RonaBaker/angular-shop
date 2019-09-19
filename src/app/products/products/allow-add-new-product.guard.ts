@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { PermissionService } from '../../login/permission.service';
 import { LoginService } from '../../login/login.service';
 
 @Injectable({

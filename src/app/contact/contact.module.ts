@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule.forChild([{ path: 'contact', component: ContactComponent }])
   ]
 })
 export class ContactModule { }

@@ -15,7 +15,7 @@ import { PermissionDeniedComponent } from './components/permission-denied.compon
 import { LoginModule } from './login/login.module';
 import { PageNotFoundComponent } from './components/page-not-found.component';
 import { LayoutModule } from './layout/layout.module';
-import { CartModule } from './cart/cart.module';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { CartModule } from './cart/cart.module';
     ProductsModule,
     CoreModule,
     ContactModule,
-    CartModule,
     LoginModule,
     LayoutModule,
     AppRoutingModule,

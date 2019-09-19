@@ -15,9 +15,9 @@ import { CartRoutingModule } from './cart-routing.module';
     CartActionComponent,
   ],
   imports: [
-    RouterModule,
     CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
+    RouterModule
   ],
 
   exports: [

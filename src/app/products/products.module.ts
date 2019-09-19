@@ -7,9 +7,9 @@ import { EditProductButtonComponent } from './edit-product-button/edit-product-b
 import { ProductNotFoundComponent } from './product-not-found/product-not-found.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { RouterModule } from '@angular/router';
-import { AppModule } from '../app.module';
 import { CartModule } from '../cart/cart.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductsRoutingModule } from './products-routing.module';
 
 
 
@@ -26,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     CartModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProductsRoutingModule
   ],
 
   exports: [

@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  // { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)},
+  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)},
   { path: '**', component: PageNotFoundComponent }
 ]
 

@@ -27,16 +27,10 @@ import { ProductsRoutingModule } from './products-routing.module';
     RouterModule,
     CartModule,
     ReactiveFormsModule,
-    ProductsRoutingModule
   ],
 
   exports: [
-    ProductsComponent,
-    ProductItemComponent,
-    ProductDetailsComponent,
-    EditProductButtonComponent,
-    ProductNotFoundComponent,
-    ProductFormComponent
+    ProductDetailsComponent
   ]
 })
 export class ProductsModule { }

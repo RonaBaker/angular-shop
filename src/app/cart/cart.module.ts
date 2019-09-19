@@ -5,6 +5,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartActionComponent } from './cart-action/cart-action.component';
 import { RouterModule, Router } from '@angular/router';
 import { CartRoutingModule } from './cart-routing.module';
+import { CartItemDetailsComponent } from './cart-item-details/cart-item-details.component';
+import { ProductsModule } from '../products/products.module';
 
 
 
@@ -13,6 +15,7 @@ import { CartRoutingModule } from './cart-routing.module';
     CartComponent,
     CartItemComponent,
     CartActionComponent,
+    CartItemDetailsComponent
   ],
   imports: [
     CommonModule,

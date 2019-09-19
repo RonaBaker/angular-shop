@@ -1,0 +1,25 @@
+button {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: white;
+    background: black;
+    border-radius: 10px; 
+    font-weight: bold;
+    border: 0;
+}
+
+button:focus{
+    outline:0;
+}
+
+button:hover:not([disabled]){
+    cursor: pointer;
+    background: white;
+    color: black;
+
+}
+
+button[disabled] {
+    background: #cccaca;
+    color: #8c8b8b;
+}

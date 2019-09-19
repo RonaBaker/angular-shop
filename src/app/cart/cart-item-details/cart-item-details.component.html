@@ -1,9 +1,0 @@
-
-<div class="product-details" *ngIf="productDetails; let p;">
-       <div><img src="{{p.image}}"></div>
-        <div class="details">
-                <h3>{{p.title}}</h3>
-                <p class="description">{{p.description}}</p>
-                <p class="price"><b>price:</b> {{p.price | currency:'ILS'}} </p>
-        </div>
-</div>

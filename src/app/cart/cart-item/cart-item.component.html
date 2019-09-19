@@ -1,7 +1,7 @@
 <div class="wrapper">
     <img [src]="cartItem.image">
     <div class="item-details">
-        <p><b>Item: </b> <span [routerLink]="['/cart/items', cartItem.id]">{{ cartItem.title }}</span></p>
+        <p><b>Item: </b> <span [routerLink]="['/cart/products', cartItem.id]">{{ cartItem.title }}</span></p>
         <p><b>Amount: </b>
             <i class="fas fa-plus-square" (click)="addQuantity()" title="increase item amount"></i>
             {{ getQuantity() }}

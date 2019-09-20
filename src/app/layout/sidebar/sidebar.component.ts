@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { LoginService } from '../../login/login.service';
-import { LanguageService } from '../../services/language.service';
+import { LoginService } from '../../core/services/login.service';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-sidebar',

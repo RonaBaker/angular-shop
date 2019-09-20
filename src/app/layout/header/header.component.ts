@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { CartService} from '../../cart/cart.service';
-import { PaymentService} from '../../cart/payment.service';
-import { LoginService } from '../../login/login.service';
-import { LanguageService } from '../../services/language.service';
+import { CartService} from '../../core/services/cart.service';
+import { PaymentService} from '../../core/services/payment.service';
+import { LoginService } from '../../core/services/login.service';
+import { LanguageService } from '../../core/services/language.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

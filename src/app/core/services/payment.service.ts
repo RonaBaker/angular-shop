@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Payment } from '../core/model/product-quantity';
-import { Product } from '../core/model/product';
-
+import { Payment } from '../model/product-quantity';
+import { Product } from '../model/product';
 import { BehaviorSubject } from 'rxjs';
-import { DataService } from '../services/data.service';
 
 @Injectable({
   providedIn: 'root'

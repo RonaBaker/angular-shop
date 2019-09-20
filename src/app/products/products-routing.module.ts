@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from '../shared/product-details/product-details.component';
 import { ProductFormComponent } from './product-form/product-form.component';
-import { AllowAddNewProductGuard } from './products/allow-add-new-product.guard';
-import { allowNavigateAwayGuard } from './allow-navigate-away.guard';
+import { AllowAddNewProductGuard } from '../core/guard/allow-add-new-product.guard';
+import { allowNavigateAwayGuard } from '../core/guard/allow-navigate-away.guard';
 import { ProductNotFoundComponent } from './product-not-found/product-not-found.component';
 
 const routes: Routes = [

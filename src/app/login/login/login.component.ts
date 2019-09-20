@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../core/services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 

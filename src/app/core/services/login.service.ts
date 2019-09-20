@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../core/model/user';
+import { User } from '../model/user';
 import { PermissionService } from './permission.service';
 
 @Injectable({

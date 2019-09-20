@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Product } from '../../core/model/product';
-import { CartService } from '../cart.service';
-import { PaymentService } from '../payment.service';
+import { CartService } from '../../core/services/cart.service';
+import { PaymentService } from '../../core/services/payment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

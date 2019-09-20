@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { CartService } from './cart.service';
-import { PaymentService } from './payment.service';
+import { CartService } from '../core/services/cart.service';
+import { PaymentService } from '../core/services/payment.service';
 import { Product } from '../core/model/product';
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../core/services/login.service';
 import { Observable } from 'rxjs';;
 
 @Component({

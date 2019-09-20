@@ -1,12 +1,12 @@
 import { Component, OnInit, OnChanges, Input} from '@angular/core';
-import { DataService } from '../../services/data.service';
-import { LoginService } from '../../login/login.service';
+import { DataService } from '../../core/services/data.service';
+import { LoginService } from '../../core/services/login.service';
 import { Category } from '../../core/model/category';
 import { Product } from '../../core/model/product';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router, RouterState, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CartService } from 'src/app/cart/cart.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product-form',

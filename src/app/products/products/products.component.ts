@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { Product } from '../../core/model/product';
 import { Category } from '../../core/model/category';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../core/services/data.service';
 import { Observable } from 'rxjs';
 
 

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { PageNotFoundComponent } from './components/page-not-found.component';
-import { allowNavigateAwayGuard } from './products/allow-navigate-away.guard';
+import { allowNavigateAwayGuard } from './core/guard/allow-navigate-away.guard';
 import { LoginComponent } from './login/login/login.component';
 import { PermissionDeniedComponent } from './components/permission-denied.component';
 

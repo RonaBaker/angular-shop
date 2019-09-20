@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/core/model/product';
-import { LoginService } from 'src/app/login/login.service';
+import { LoginService } from 'src/app/core/services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/core/services/data.service';
 import { Subscription, Observable } from 'rxjs';
 
 @Component({

@@ -8,7 +8,6 @@ import { AboutComponent } from './components/about/about.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
-import { ProductsModule } from './products/products.module';
 import { CoreModule } from './core/core.module';
 import { ContactModule } from './contact/contact.module';
 import { PermissionDeniedComponent } from './components/permission-denied.component';
@@ -30,7 +29,6 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ProductsModule,
     CoreModule,
     ContactModule,
     LoginModule,

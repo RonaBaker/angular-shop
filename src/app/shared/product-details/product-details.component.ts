@@ -3,7 +3,7 @@ import { Product } from 'src/app/core/model/product';
 import { LoginService } from 'src/app/core/services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',

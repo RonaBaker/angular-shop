@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent},
   { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)},
+  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)},
   { path: 'permission-denied', component: PermissionDeniedComponent},
   { path: '**', component: PageNotFoundComponent }
 ]

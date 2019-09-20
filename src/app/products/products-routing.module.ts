@@ -8,16 +8,21 @@ import { allowNavigateAwayGuard } from '../core/guard/allow-navigate-away.guard'
 import { ProductNotFoundComponent } from './product-not-found/product-not-found.component';
 
 const routes: Routes = [
-    { path: 'products', component: ProductsComponent },
-    { path: 'products/:id', component: ProductDetailsComponent },
-    { path: 'products/:id/edit-product', component: ProductFormComponent, canActivate: [AllowAddNewProductGuard], canDeactivate: [allowNavigateAwayGuard], data: {editProduct: true} },
-    { path: 'products/:id/productNotFound', component: ProductNotFoundComponent},
-    { path: 'add-new-product', component: ProductFormComponent, canActivate: [AllowAddNewProductGuard], canDeactivate: [allowNavigateAwayGuard], data: {editProduct: false}},
+    {
+        path: '',
+        children: [
+            { path: '', component: ProductsComponent },
+            { path: 'add-new-product', pathMatch:'full', component: ProductFormComponent, canActivate: [AllowAddNewProductGuard], canDeactivate: [allowNavigateAwayGuard], data: { editProduct: false } },
+            { path: ':id', component: ProductDetailsComponent },
+            { path: ':id/edit-product', component: ProductFormComponent, canActivate: [AllowAddNewProductGuard], canDeactivate: [allowNavigateAwayGuard], data: { editProduct: true } },
+            { path: ':id/productNotFound', component: ProductNotFoundComponent },
+        ]
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
-}) 
+})
 
-export class ProductsRoutingModule {} 
+export class ProductsRoutingModule { } 

@@ -24,7 +24,7 @@
         <li class="menu-item"
             (click)="toggleMenu()" 
             *ngIf="isPermitted()"
-            routerLink="/add-new-product"
+            routerLink="/products/add-new-product"
             routerLinkActive="active-router">{{'ADD PRODUCT' | language: defaultLang : 'addProduct'}}</li>
         <app-social-tab>
             <a #tab href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a> 
